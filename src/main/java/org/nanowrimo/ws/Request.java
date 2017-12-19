@@ -15,6 +15,7 @@ import java.text.MessageFormat;
  * @author Paul S. Hawke (paul.hawke@gmail.com)
  *         On: 12/26/12 at 11:40 PM
  */
+@SuppressWarnings({"unused", "WeakerAccess", "Duplicates"})
 public class Request<T extends WordCountSummary> {
 
     private String summaryByIdUrl;

@@ -6,6 +6,7 @@ package org.nanowrimo.ws;
  * <i>entries</i> property will remain null when retriving just the summary,
  * but will be filled in when retrieving history.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class RegionWordCount extends WordCountSummary {
     private int rank;
     private int min;

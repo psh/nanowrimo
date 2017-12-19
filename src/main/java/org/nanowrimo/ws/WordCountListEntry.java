@@ -9,6 +9,7 @@ import java.util.Date;
  * when retrieving a summary, or will be filled in when retrieving the full history
  * for a given user or region.
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class WordCountListEntry {
     private Date date;
     private int wordcount;

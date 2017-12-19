@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@SuppressWarnings({"unused", "Duplicates"})
 class UserWordCountHandler extends WordCountHandler<UserWordCount> {
     private StringBuffer sb = new StringBuffer();
     private UserWordCount userSummary;
@@ -20,7 +21,7 @@ class UserWordCountHandler extends WordCountHandler<UserWordCount> {
 
     public UserWordCountHandler() {
         sdf = new SimpleDateFormat("yyyy-MM-dd");
-        entries = new ArrayList<WordCountListEntry>();
+        entries = new ArrayList<>();
         userSummary = new UserWordCount();
     }
 

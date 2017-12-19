@@ -6,6 +6,7 @@ package org.nanowrimo.ws;
  * <p>The <i>entries</i> property of a <code>UserWordCount</code> is filled in when retrieving their
  * history and will be <code>null</code> when retrieving the user's wordcount summary.</p>
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class UserWordCount extends WordCountSummary {
     private WordCountListEntry[] entries;
 

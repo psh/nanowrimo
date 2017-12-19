@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@SuppressWarnings({"unused", "Duplicates"})
 class RegionWordCountHandler extends WordCountHandler<RegionWordCount> {
     private StringBuffer sb = new StringBuffer();
     private RegionWordCount regionSummary;
@@ -16,11 +17,11 @@ class RegionWordCountHandler extends WordCountHandler<RegionWordCount> {
     private int wordcount;
     private boolean insideEntry;
     private SimpleDateFormat sdf;
-    private List entries;
+    private List<WordCountListEntry> entries;
 
     public RegionWordCountHandler() {
         sdf = new SimpleDateFormat("yyyy-MM-dd");
-        entries = new ArrayList();
+        entries = new ArrayList<>();
         regionSummary = new RegionWordCount();
     }
 
@@ -112,7 +113,7 @@ class RegionWordCountHandler extends WordCountHandler<RegionWordCount> {
             } catch (NumberFormatException ignored) {
             }
         } else if (WORDCOUNTS_CONTAINER.equals(qName)) {
-            regionSummary.setEntries((WordCountListEntry[]) entries.toArray(new WordCountListEntry[entries.size()]));
+            regionSummary.setEntries(entries.toArray(new WordCountListEntry[entries.size()]));
         }
     }
 }

@@ -3,6 +3,7 @@ package org.nanowrimo.ws;
 /**
  * <p>A summary of a given user or region including name, numeric Nanowrimo ID, and the current wordcount.</p>
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 class WordCountSummary {
     private int summaryID;
     private String name;

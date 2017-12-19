@@ -1,9 +1,12 @@
 package org.nanowrimo.ws;
 
+import static org.nanowrimo.ws.ServiceApiConstants.*;
+
 /**
-* @author Paul S. Hawke (paul.hawke@gmail.com)
-*         On: 12/27/12 at 2:03 AM
-*/
+ * @author Paul S. Hawke (paul.hawke@gmail.com)
+ * On: 12/27/12 at 2:03 AM
+ */
+@SuppressWarnings({"unused", "WeakerAccess", "unchecked"})
 public class RequestBuilder<T extends WordCountSummary> {
     private String theName = null;
     private Integer theId = null;
@@ -44,31 +47,21 @@ public class RequestBuilder<T extends WordCountSummary> {
             throw new IllegalStateException("Request needs one of either the user name or ID");
         }
 
-        @SuppressWarnings("unchecked") Class<? extends WordCountHandler<T>> handlerClass =
+        Class<? extends WordCountHandler<T>> handlerClass =
                 (Class<? extends WordCountHandler<T>>) (user ? UserWordCountHandler.class : RegionWordCountHandler.class);
 
-        return theId != null ? (user ?
-                new Request<T>(theId, handlerClass,
-                        ServiceApiConstants.USER_SUMMARY_URL,
-                        ServiceApiConstants.USER_SUMMARY_NAME_URL,
-                        ServiceApiConstants.USER_HISTORY_URL,
-                        ServiceApiConstants.USER_HISTORY_NAME_URL) :
-                new Request<T>(theId, handlerClass,
-                        ServiceApiConstants.REGION_SUMMARY_URL,
-                        ServiceApiConstants.REGION_SUMMARY_NAME_URL,
-                        ServiceApiConstants.REGION_HISTORY_URL,
-                        ServiceApiConstants.REGION_HISTORY_NAME_URL)
-        ) : (user ?
-                new Request<T>(theName, handlerClass,
-                        ServiceApiConstants.USER_SUMMARY_URL,
-                        ServiceApiConstants.USER_SUMMARY_NAME_URL,
-                        ServiceApiConstants.USER_HISTORY_URL,
-                        ServiceApiConstants.USER_HISTORY_NAME_URL) :
-                new Request<T>(theName, handlerClass,
-                        ServiceApiConstants.REGION_SUMMARY_URL,
-                        ServiceApiConstants.REGION_SUMMARY_NAME_URL,
-                        ServiceApiConstants.REGION_HISTORY_URL,
-                        ServiceApiConstants.REGION_HISTORY_NAME_URL)
-        );
+        return (theId != null) ? buildRequestById(handlerClass) : buildRequestByName(handlerClass);
+    }
+
+    private Request<T> buildRequestById(Class<? extends WordCountHandler<T>> handlerClass) {
+        return user
+                ? new Request<>(theId, handlerClass, USER_SUMMARY_URL, USER_SUMMARY_NAME_URL, USER_HISTORY_URL, USER_HISTORY_NAME_URL)
+                : new Request<>(theId, handlerClass, REGION_SUMMARY_URL, REGION_SUMMARY_NAME_URL, REGION_HISTORY_URL, REGION_HISTORY_NAME_URL);
+    }
+
+    private Request<T> buildRequestByName(Class<? extends WordCountHandler<T>> handlerClass) {
+        return user
+                ? new Request<>(theName, handlerClass, USER_SUMMARY_URL, USER_SUMMARY_NAME_URL, USER_HISTORY_URL, USER_HISTORY_NAME_URL)
+                : new Request<>(theName, handlerClass, REGION_SUMMARY_URL, REGION_SUMMARY_NAME_URL, REGION_HISTORY_URL, REGION_HISTORY_NAME_URL);
     }
 }

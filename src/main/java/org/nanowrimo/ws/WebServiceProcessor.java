@@ -14,6 +14,7 @@ import java.net.URL;
  * @author Paul S. Hawke (paul.hawke@gmail.com)
  *         On: 12/26/12 at 11:16 PM
  */
+@SuppressWarnings({"unused", "WeakerAccess", "Duplicates"})
 class WebServiceProcessor<T extends WordCountSummary> {
     private String urlString;
     private WordCountHandler<T> handler;
