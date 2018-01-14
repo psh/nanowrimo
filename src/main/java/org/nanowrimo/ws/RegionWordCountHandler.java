@@ -34,18 +34,18 @@ class RegionWordCountHandler extends WordCountHandler<RegionWordCount> {
         return regionSummary;
     }
 
-    public void characters(char ch[], int start, int length) throws SAXException {
+    public void characters(char ch[], int start, int length) {
         sb.append(ch, start, length);
     }
 
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+    public void startElement(String uri, String localName, String qName, Attributes attributes) {
         sb.setLength(0);
         if (WORD_COUNT_ENTRY.equals(qName)) {
             insideEntry = true;
         }
     }
 
-    public void endElement(String uri, String localName, String qName) throws SAXException {
+    public void endElement(String uri, String localName, String qName) {
         if (REGION_NAME.equals(qName)) {
             regionSummary.setName(sb.toString());
         } else if (WORD_COUNT_ENTRY.equals(qName)) {
